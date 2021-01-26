@@ -3,6 +3,30 @@
  * @return {string}
  */
 var longestPalindrome = function(s) {
+  let subStr = ''
+  const length = s.length
+
+  let reversed = ''
+  for (let i = length - 1; i >= 0; i--) {
+    reversed += s[i]
+  }
+
+  for (let i = 0; i < length; i++) {
+    for (let j = length - 1; j >= i; j--) {
+      const sub = s.substring(i, j + 1)
+      const reversedSub = reversed.substring(length - j - 1, length - i)
+      if (sub == reversedSub) {
+        if (sub.length > subStr.length) {
+          subStr = sub
+        }
+      }
+    }
+  }
+
+  return subStr
+}
+
+var longestPalindrome2 = function(s) {
   let maxLength = 0, subStr = ''
   const length = s.length
   for (let i = 0; i < length; i++) {
