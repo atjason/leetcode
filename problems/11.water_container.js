@@ -4,6 +4,25 @@
  */
 var maxArea = function(heights) {
   let area = 0
+  let l = 0
+  let r = heights.length - 1
+
+  while (l < r) {
+    const tmpArea = (r - l) * Math.min(heights[l], heights[r])
+    area = Math.max(area, tmpArea)
+
+    if (heights[l] < heights[r]) {
+      l += 1
+    } else {
+      r -= 1
+    }
+  }
+
+  return area
+}
+
+var maxArea2 = function(heights) {
+  let area = 0
   const length = heights.length
   for (let i = 0; i < length - 1; i++) {
     for (let j = i + 1; j < length; j++) {
